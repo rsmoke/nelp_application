@@ -19,7 +19,7 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: nelp_application_production
-  username: nelp_application
-  password: <%= ENV['NELP_APPLICATION_DATABASE_PASSWORD'] %>
+  username: <%= Rails.application.credentials.PRODUCTION_DB_USERNAME %>
+  password: <%= Rails.application.credentials.PRODUCTION_DB_PASSWORD %>
