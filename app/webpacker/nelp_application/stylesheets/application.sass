@@ -1,0 +1,105 @@
+@import '~bootstrap/scss/functions'
+@import '~bootstrap/scss/bootstrap'
+@import './shared/variables'
+
+body
+  margin: 0
+
+// You Forgot The Alt Message
+img[alt=""], img:not([alt])
+  border: 5px dashed #c00
+
+.container
+  font-family: $font-family-base
+  font-size: 16px
+
+  .content
+    margin: 0 10px
+    // display: grid
+.debug_dump
+  grid-column: span 12
+  // max-height: auto
+  border-radius: 1rem
+  padding: 1rem
+  // clear: both
+  // float: left
+  margin: 5px
+  background-color: transparentize(grey, 0.3)
+
+input[type=submit]
+  background-color: $spring_term_green
+  color: $bone
+  font-weight: bold
+  font-size: .9rem
+  width: 100px
+  padding: 2px
+  border-radius: 8px
+  margin: auto
+  &:hover
+    background-color: $bone
+    color: $spring_term_green
+    cursor: pointer
+
+.logged_in_user_stamp
+  font-size: .5rem
+  color: #d0cfcd
+
+
+.cancel-button
+      margin: auto
+      text-decoration: none
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1)
+      background-color: $bone
+      color: $archway_ivy
+
+      height: 1.2rem
+      padding: 4px
+
+      font-weight: bold
+      font-size: .9rem
+      width: auto
+
+      border-radius: 6px
+
+      &:hover
+        color: $bone
+        background-color: $archway_ivy
+
+.add-person-button
+      margin: 20px
+      text-decoration: none
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1)
+      background-color: $heather_blue
+      color: $bone
+      height: 1.2rem
+      padding: 5px
+      font-weight: bold
+      font-size: .9rem
+      width: auto
+
+      border-radius: 8px
+
+      &:hover
+        color: $heather_blue
+        background-color: $bone
+
+input[type=submit].logout-button
+      margin: auto
+      text-decoration: none
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1)
+      background-color: $hill_brown
+      color: $bone
+      font-weight: bold
+      font-size: .7rem
+      width: auto
+
+      border-radius: 4px
+
+      &:hover
+        color: $bone
+        background-color: transparentize($alert, 0.4)
+
+.required-field::before
+  content: "*"
+  float: right
+  color: red
