@@ -11,9 +11,8 @@ import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
 // import '../src/js/your_js_filename';
 import 'jquery';
+import 'bootstrap'
+import '../src/application.sass'
 
 Rails.start();
 Turbolinks.start();
-
-// Specific frontend applications
-import 'nelp_application'
