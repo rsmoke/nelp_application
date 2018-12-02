@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @user.name
+%p
+  %b Email address:
+  = @user.email_address
+%p
+  %b Avatar url:
+  = @user.avatar_url
+%p
+  %b Locale:
+  = @user.locale
+%p
+  %b Hosted domain:
+  = @user.hosted_domain
+
+= link_to 'Edit', edit_user_path(@user)
+\|
+= link_to 'Back', users_path
