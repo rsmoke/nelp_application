@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "users/show", type: :view do
   before(:each) do
     @user = assign(:user, User.create!(
+      :google_id => "Google",
       :name => "Name",
       :email_address => "Email Address",
       :avatar_url => "Avatar Url",
@@ -13,6 +14,7 @@ RSpec.describe "users/show", type: :view do
 
   it "renders attributes in <p>" do
     render
+    expect(rendered).to match(/Google/)
     expect(rendered).to match(/Name/)
     expect(rendered).to match(/Email Address/)
     expect(rendered).to match(/Avatar Url/)

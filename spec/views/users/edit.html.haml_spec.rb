@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe "users/edit", type: :view do
   before(:each) do
     @user = assign(:user, User.create!(
+      :google_id => "MyString",
       :name => "MyString",
       :email_address => "MyString",
       :avatar_url => "MyString",
@@ -15,6 +16,8 @@ RSpec.describe "users/edit", type: :view do
     render
 
     assert_select "form[action=?][method=?]", user_path(@user), "post" do
+
+      assert_select "input[name=?]", "user[google_id]"
 
       assert_select "input[name=?]", "user[name]"
 
