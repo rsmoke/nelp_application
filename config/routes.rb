@@ -1,14 +1,19 @@
 Rails.application.routes.draw do
+  root 'pages#index'
+  # resources :sessions
+  # get '/login', to: 'logins#new'
+  get '/login', to: 'logins#create', as: :create_login
+  # get 'pages/index'
+  get '/about', to: 'pages#about'
+  get '/contact', to: 'pages#contact'
+  get '/privacy', to: 'pages#privacy'
+  get '/terms_of_use', to: 'pages#terms_of_use'
+
+  # get '/login', to: 'sessions#new'
+
+  # post '/login', to: 'sessions#create'
+
+  delete '/logout', to: 'logins#destroy'
+
   resources :users
-  root to: 'pages#index'
-  resources :sessions
-  get 'login', to: 'logins#new'
-  get 'login/create', to: 'logins#create', as: :create_login
-  get 'pages/index'
-  get 'pages/about'
-  get 'pages/contact'
-  get 'pages/privacy'
-  get 'pages/terms_of_use'
-  #resources :logins
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
