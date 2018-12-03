@@ -50,6 +50,7 @@ group :development do
   gem 'spring-watcher-listen'
   gem 'pry'
   gem 'pry-rails'
+  gem 'meta_request'
 end
 
 
