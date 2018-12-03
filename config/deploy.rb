@@ -82,8 +82,8 @@ namespace :deploy do
    task :upload do
    on roles (:app) do
      upload! "config/master.key",  "#{shared_path}/config/master.key"
-     upload! "config/puma.prod.rb",  "#{shared_path}/config/puma.rb"
-     upload! "config/nginx.prod.conf",  "#{shared_path}/config/nginx.conf"
+     upload! "config/puma_prod.rb",  "#{shared_path}/config/puma.rb"
+     upload! "config/nginx_prod.conf",  "#{shared_path}/config/nginx.conf"
    end
   end
 
