@@ -1,10 +1,35 @@
 @import '~bootstrap/scss/bootstrap'
 @import 'variables'
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome'
+@import '~@fortawesome/fontawesome-free/scss/regular'
+@import '~@fortawesome/fontawesome-free/scss/solid'
+
+@mixin setBgColorAndHover($baseColor)
+    color: $baseColor
+    &:hover
+      color: darken($baseColor, 20%)
 
 footer
-  background-color: $angell_hall_ash
+  margin-top: 10px
+  background-image: url('../images/nelp-footer.png')
   color: $bone
+  height: 160px
 
+  a
+    +setBgColorAndHover($bone)
+
+  .footer-col-rt
+   // background-color: #233140
+   padding-top: 10px
+
+  .footer-col-lf
+   // background-color: #2C3E50
+   padding-top: 10px
+
+  .copyright
+    background-color: #fff
+    color: black
 .navbar-brand
   background-color: $um_maize
   padding: 5px
