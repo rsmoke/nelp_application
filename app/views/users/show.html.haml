@@ -1,5 +1,9 @@
 - provide(:title, 'Account Activity')
 
+%h1
+  Payment activity for
+  = @user.name
+  = image_tag @user.avatar_url, size: 60, class: 'img-fluid img-thumbnail', alt: 'avatar image'
 %p#notice= notice
 
 - if Rails.env.development?
@@ -7,18 +11,13 @@
     %b Google:
     = @user.google_id
 %p
-  %b Name:
-  = @user.name
-%p
   %b Email address:
   = @user.email_address
-%p
-  %b Avatar
-  = image_tag @user.avatar_url, size: 60
+
   - if Rails.env.development?
-    %br
-    %b url:
-    = @user.avatar_url
+    %p
+      %b Avatar url:
+      = @user.avatar_url
 
 - if Rails.env.development?
   %p
