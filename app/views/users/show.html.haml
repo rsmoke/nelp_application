@@ -2,9 +2,10 @@
 
 %p#notice= notice
 
-%p
-  %b Google:
-  = @user.google_id
+- if Rails.env.development?
+  %p
+    %b Google:
+    = @user.google_id
 %p
   %b Name:
   = @user.name
@@ -14,15 +15,18 @@
 %p
   %b Avatar
   = image_tag @user.avatar_url, size: 60
-  %br
-  %b url:
-  = @user.avatar_url
-%p
-  %b Locale:
-  = @user.locale
-%p
-  %b Hosted domain:
-  = @user.hosted_domain
+  - if Rails.env.development?
+    %br
+    %b url:
+    = @user.avatar_url
+
+- if Rails.env.development?
+  %p
+    %b Locale:
+    = @user.locale
+  %p
+    %b Hosted domain:
+    = @user.hosted_domain
 
 %hr
 %hr
