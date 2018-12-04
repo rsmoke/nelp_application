@@ -17,11 +17,11 @@
         - if logged_in?
           %li.nav-item.dropdown
             %a.nav-link.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-              Account
+              Your Account
               -# %b.caret
             %ul.dropdown-menu
               %li.nav-item
-                = link_to "Profile", current_user, :class => 'nav-link nav-link-header'
+                = link_to "Transactions", current_user, :class => 'nav-link nav-link-header'
               %li.divider{:role => "separator"}
               %li.nav-item
                 = link_to "Log out", logout_path, method: :delete, :class => 'nav-link nav-link-header'
