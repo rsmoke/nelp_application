@@ -1,4 +1,8 @@
-%h1 Pages#index
-%p Find me in app/views/pages/index.html.haml
+- provide(:title, 'Home')
+
+%h1 NELP Program Payments
+%h4 Welcome to the payment portal for the New England Literature Program (NELP) at the University of Michigan.
 - if !logged_in?
-  = google_sign_in_button 'Sign in with my Google account', class: "btn btn-primary", proceed_to: create_login_url
+  = google_sign_in_button class: "btn login_btn", proceed_to: create_login_url do
+    Sign in with my
+    #{image_tag(asset_pack_path('images/BlockM-rball.png'), alt: 'Google', class: 'login_logo', size: '20x16')}+Google account
