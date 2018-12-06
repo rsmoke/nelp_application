@@ -25,14 +25,13 @@ class NelnetServicesController < ApplicationController
   end
 
   def make_payment
-    processed_url = generate_hash(@current_user.name)
+    processed_url = generate_hash(@current_user)
     redirect_to processed_url
   end
 
   private
-    def generate_hash(current_user_name)
-      current_epoch_time = DateTime.now.strftime("%Q").to_i
-      user_name = current_user_name
+    def generate_hash(current_user)
+      order_num = current_user.email_address.partition('@').first + '-' + current_user.id.to_s
       redirect_url = 'https://lsa-english-nelp.miserver.it.umich.edu/payment_receipt'
       amount_to_be_payed = 35
       if Rails.env.development?
@@ -49,11 +48,10 @@ class NelnetServicesController < ApplicationController
        'prod_key' => Rails.application.credentials.NELNET_SERVICE[:PRODUCTION_KEY],
        'prod_URL' => Rails.application.credentials.NELNET_SERVICE[:PRODUCTION_URL]
       }
-
+      current_epoch_time = DateTime.now.strftime("%Q").to_i
       initial_hash = {
-        'orderNumber' => 4,
+        'orderNumber' => order_num,
         'orderType' => 'English Department Online',
-        'orderName' => user_name,
         'orderDescription' => 'NELP Application Fees',
         'amountDue' => amount_to_be_payed * 100,
         'redirectUrl' => redirect_url,
