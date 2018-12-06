@@ -5,12 +5,28 @@ class NelnetServicesController < ApplicationController
   before_action :current_user,   only: %i[payment_receipt make_payment]
 
   def payment_receipt
-    @user = User.find_by(id: session[:user_id])
+    # @user = User.find_by(id: session[:user_id])
+    # @transactionType = params[:transactionType]
+    # @transactionStatus = params[:transactionStatus]
+    # @transactionId = params[:transactionId]
+    # @transactionTotalAmount = params[:transactionTotalAmount]
+    # @transactionDate = params[:transactionDate]
+    # @transactionAcountType = params[:transactionAcountType]
+    # @transactionResultCode = params[:transactionResultCode]
+    # @transactionResultMessage = params[:transactionResultMessage]
+    # @orderNumber = params[:orderNumber]
+    # @payerFullName = params[:payerFullName]
+
+    params.each do |key,value|
+      Rails.logger.warn "Param #{key}: #{value}"
+    end
+    # write to transx table
 
   end
 
   def make_payment
-    @processed_url = generate_hash(@current_user.name)
+    processed_url = generate_hash(@current_user.name)
+    redirect_to processed_url
   end
 
   private
@@ -54,5 +70,9 @@ class NelnetServicesController < ApplicationController
       # Final URL
       url_for_payment = initial_hash.map{|k,v| "#{k}=#{v}&" unless k == 'key'}.join('')
       final_url = connection_hash[url_to_use] + url_for_payment + 'hash=' + encoded_hash
+    end
+
+    def url_params
+      params.permit(:transactionType, :transactionStatus, :transactionId, :transactionTotalAmount, :transactionDate, :transactionAcountType, :transactionResultCode, :transactionResultMessage, :orderNumber, :payerFullName)
     end
 end
