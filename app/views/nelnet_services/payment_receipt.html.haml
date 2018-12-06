@@ -1,16 +1,30 @@
-%h1 NelnetServices#payment_receipt
-%p Find me in app/views/nelnet_services/payment_receipt.html.haml
+- provide(:title, 'Payment Receipt')
 
-%h2
+%h1 Payment_receipt
+
+%h4
+  = @current_payment.transactionResultMessage
+
+%h6
   = @current_user.name
 %p
-  =@transactionType
-  =@transactionStatus
-  =@transactionId
-  =@transactionTotalAmount
-  =@transactionDate
-  =@transactionAcountType
-  =@transactionResultCode
-  =@transactionResultMessage
-  =@orderNumber
-  =@payerFullName
+  = "Your payment of the NELP Application fee for $#{@current_payment.transactionTotalAmount / 100}.00 (Confirmation Number: #{@current_payment.transactionId}) has been recorded into your account"
+%p.text-muted
+  You will receive an email confirmation from 'MerchantCreditCard&#64;umich.edu'
+%h5
+  Everyone who applies to NELP will also meet for 20 minutes with a pair of NELP
+  interviewers.  To sign up for your interview, you must come in person to Aric Knuth’s
+  office—4172 Angell Hall— after you’ve submitted your NELP application online.
+  You can stop by anytime during the following three options:
+  %ul
+    %li Tuesday, January 15, 1-5pm
+    %li Wednesday, January 16, 9-5pm
+    %li Thursday, January 17, 1-5pm
+
+  Please put this on your calendar now so you you’ll remember to sign up fo your
+  NELP interview.  If you’re not free during any of the times above, you should
+  email Aric Knuth at
+  = mail_to 'aknuth@umich.edu'
+  and await further instructions.
+
+= link_to "Your Payment Profile", current_user

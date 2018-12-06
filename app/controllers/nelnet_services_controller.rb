@@ -20,7 +20,21 @@ class NelnetServicesController < ApplicationController
     params.each do |key,value|
       Rails.logger.warn "Param #{key}: #{value}"
     end
-    # write to transx table
+    Payment.create(
+      transactionType: params['transactionType'],
+      transactionStatus: params['transactionStatus'],
+      transactionId: params['transactionId'],
+      transactionTotalAmount: params['transactionTotalAmount'],
+      transactionDate: params['transactionDate'],
+      transactionAcountType: params['transactionAcountType'],
+      transactionResultCode: params['transactionResultCode'],
+      transactionResultMessage: params['transactionResultMessage'],
+      orderNumber: params['orderNumber'],
+      timestamp: params['timestamp'],
+      transactionHash: params['hash']
+    )
+
+    @current_payment = Payment.find_by(transactionId: params[:transactionId])
 
   end
 

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :transactions
   get 'nelnet_services/payment_receipt'
   root 'pages#index'
   # resources :sessions
