@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @users_current_payments = Payment.where(payerFullName: @user.google_id )
   end
 
   # GET /users/new

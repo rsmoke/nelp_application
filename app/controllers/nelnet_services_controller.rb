@@ -5,18 +5,6 @@ class NelnetServicesController < ApplicationController
   before_action :current_user,   only: %i[payment_receipt make_payment]
 
   def payment_receipt
-    # @user = User.find_by(id: session[:user_id])
-    # @transactionType = params[:transactionType]
-    # @transactionStatus = params[:transactionStatus]
-    # @transactionId = params[:transactionId]
-    # @transactionTotalAmount = params[:transactionTotalAmount]
-    # @transactionDate = params[:transactionDate]
-    # @transactionAcountType = params[:transactionAcountType]
-    # @transactionResultCode = params[:transactionResultCode]
-    # @transactionResultMessage = params[:transactionResultMessage]
-    # @orderNumber = params[:orderNumber]
-    # @payerFullName = params[:payerFullName]
-
     params.each do |key,value|
       Rails.logger.warn "Param #{key}: #{value}"
     end
@@ -30,6 +18,7 @@ class NelnetServicesController < ApplicationController
       transactionResultCode: params['transactionResultCode'],
       transactionResultMessage: params['transactionResultMessage'],
       orderNumber: params['orderNumber'],
+      payerFullName: @current_user.google_id,
       timestamp: params['timestamp'],
       transactionHash: params['hash']
     )
@@ -69,7 +58,7 @@ class NelnetServicesController < ApplicationController
         'orderDescription' => 'NELP Application Fees',
         'amountDue' => amount_to_be_payed * 100,
         'redirectUrl' => redirect_url,
-        'redirectUrlParameters' => 'transactionType,transactionStatus,transactionId,transactionTotalAmount,transactionDate,transactionAcountType,transactionResultCode,transactionResultMessage,orderNumber,payerFullName',
+        'redirectUrlParameters' => 'transactionType,transactionStatus,transactionId,transactionTotalAmount,transactionDate,transactionAcountType,transactionResultCode,transactionResultMessage,orderNumber',
         'retriesAllowed' => 1,
         'timestamp' => current_epoch_time,
         'key' => connection_hash[key_to_use]

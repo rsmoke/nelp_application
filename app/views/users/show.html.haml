@@ -29,11 +29,31 @@
 
 %hr
 %hr
+- if @users_current_payments.nil?
+  %p
+    = link_to "Make a payment", make_payment_path, class: 'btn btn-sm btn-success'
 
-%p
-  %b --Transactions--
-  = link_to "Make a payment", make_payment_path
-
--# = link_to 'Edit', edit_user_path(@user)
--# \|
--# = link_to 'Back', users_path
+.card
+  .card-header.text-center
+    Transactions
+  .card-body
+    %p
+      - if @users_current_payments.nil?
+        %p
+          You have not made a payment yet.
+      - else
+        %ul.small
+          - @users_current_payments.each do |payment|
+            %li
+              %b
+                Transaction:
+              =payment.transactionId
+              %b
+                Credit Card:
+              =payment.transactionAcountType
+              %b
+                Amount:
+              ="$#{payment.transactionTotalAmount.chomp('00')}"
+              %b
+                Date:
+              =payment.transactionDate

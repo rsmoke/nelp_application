@@ -6,16 +6,15 @@
   = @current_payment.transactionResultMessage
 
 %h6
-  = @current_user.name
+  = "#{@current_user.name},"
 %p
-  - this_payment = @current_payment.transactionTotalAmount / 100
-  = "Your payment of the NELP Application fee for $#{this_payment}.00 (Confirmation Number: #{@current_payment.transactionId}) has been recorded into your account"
+  = "Your payment of the NELP Application fee for $35.00 (Confirmation Number: #{@current_payment.transactionId}) has been recorded into your account"
 %p.text-muted
-  You will receive an email confirmation from 'MerchantCreditCard&#64;umich.edu'
+  You will also receive an email confirmation from 'MerchantCreditCard&#64;umich.edu'
 %h5
   Everyone who applies to NELP will also meet for 20 minutes with a pair of NELP
   interviewers.  To sign up for your interview, you must come in person to Aric Knuth’s
-  office—4172 Angell Hall— after you’ve submitted your NELP application online.
+  office (located in 4172 Angell Hall) after you’ve submitted your NELP application online.
   You can stop by anytime during the following three options:
   %ul
     %li Tuesday, January 15, 1-5pm
