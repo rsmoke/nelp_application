@@ -29,7 +29,7 @@
 
 %hr
 %hr
-- if @users_current_payments.nil?
+- if @users_current_payments.count == 0
   %p
     = link_to "Make a payment", make_payment_path, class: 'btn btn-sm btn-success'
 
@@ -38,7 +38,7 @@
     Transactions
   .card-body
     %p
-      - if @users_current_payments.nil?
+      - if @users_current_payments.count == 0
         %p
           You have not made a payment yet.
       - else

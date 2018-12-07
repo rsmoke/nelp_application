@@ -9,7 +9,7 @@ class LoginsController < ApplicationController
       @user = User.find_by(google_id: GoogleSignIn::Identity.new(flash[:google_sign_in_token]).user_id)
       if @user
         log_in @user
-        redirect_to user_path(cookies.signed[:user_id]), alert: "Welcome #{user.name} at #{user.hosted_domain}"
+        redirect_to user_path(cookies.signed[:user_id]), alert: "Welcome #{user.name}"
       else
         redirect_to root_url, alert: 'There was problem finding your account'
       end
