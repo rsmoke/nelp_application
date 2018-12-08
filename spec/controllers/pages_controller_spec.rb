@@ -30,9 +30,9 @@ RSpec.describe PagesController, type: :controller do
     end
   end
 
-  describe "GET #terms_of_use" do
+  describe "GET #terms_of_service" do
     it "returns http success" do
-      get :terms_of_use
+      get :terms_of_service
       expect(response).to have_http_status(:success)
     end
   end
