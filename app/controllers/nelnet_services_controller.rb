@@ -5,9 +5,9 @@ class NelnetServicesController < ApplicationController
   before_action :current_user,   only: %i[payment_receipt make_payment]
 
   def payment_receipt
-    params.each do |key,value|
-      Rails.logger.warn "Param #{key}: #{value}"
-    end
+    # params.each do |key,value|
+    #   Rails.logger.warn "Param #{key}: #{value}"
+    # end
     Payment.create(
       transactionType: params['transactionType'],
       transactionStatus: params['transactionStatus'],
@@ -46,8 +46,8 @@ class NelnetServicesController < ApplicationController
        end
 
       connection_hash = {
-       'test_key' => 'key',
-       'test_URL' => 'https://uatquikpayasp.com/umich2/commerce_manager/payer.do?',
+       'test_key' => Rails.application.credentials.NELNET_SERVICE[:DEVELOPMENT_KEY],
+       'test_URL' => Rails.application.credentials.NELNET_SERVICE[:DEVELOPMENT_URL],
        'prod_key' => Rails.application.credentials.NELNET_SERVICE[:PRODUCTION_KEY],
        'prod_URL' => Rails.application.credentials.NELNET_SERVICE[:PRODUCTION_URL]
       }
@@ -74,6 +74,6 @@ class NelnetServicesController < ApplicationController
     end
 
     def url_params
-      params.permit(:transactionType, :transactionStatus, :transactionId, :transactionTotalAmount, :transactionDate, :transactionAcountType, :transactionResultCode, :transactionResultMessage, :orderNumber, :payerFullName)
+      params.permit(:transactionType, :transactionStatus, :transactionId, :transactionTotalAmount, :transactionDate, :transactionAcountType, :transactionResultCode, :transactionResultMessage, :orderNumber, :timestamp, :hash)
     end
 end
