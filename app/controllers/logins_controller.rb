@@ -5,7 +5,7 @@ class LoginsController < ApplicationController
   def create
     if user = authenticate_with_google
       cookies.signed[:user_id] = user.id
-      Login.create(email_address: user.email_address, name: user.name, google_id: GoogleSignIn::Identity.new(flash[:google_sign_in_token]).user_id)
+      Login.create(email_address: user.email_address, name: user.name, google_id: GoogleSignIn::Identity.new(flash[:google_sign_in_token]).user_id, user_id: user.id)
       @user = User.find_by(google_id: GoogleSignIn::Identity.new(flash[:google_sign_in_token]).user_id)
       if @user
         log_in @user
@@ -24,6 +24,10 @@ class LoginsController < ApplicationController
   end
 
   private
+    def login_params
+      params.permit(:id, :name, :google_id, :email_address, :user_id)
+    end
+
     def authenticate_with_google
       if flash[:google_sign_in_token].present?
         User.find_or_create_by(google_id: GoogleSignIn::Identity.new(flash[:google_sign_in_token]).user_id) do |user|
