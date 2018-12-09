@@ -20,7 +20,8 @@ class NelnetServicesController < ApplicationController
       orderNumber: params['orderNumber'],
       payerFullName: @current_user.google_id,
       timestamp: params['timestamp'],
-      transactionHash: params['hash']
+      transactionHash: params['hash'],
+      user_id: current_user.id
     )
 
     @current_payment = Payment.find_by(transactionId: params[:transactionId])
