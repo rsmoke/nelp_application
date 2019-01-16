@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :email_address, presence: true, length: { maximum: 255},
                     format: { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false }
+  validates :google_id, presence: true, uniqueness: true
 
   # Returns a random token.
   def User.new_token
