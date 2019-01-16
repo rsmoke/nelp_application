@@ -28,3 +28,16 @@ def user_attributes(overrides = {})
     remember_digest: nil
   }.merge(overrides)
 end
+
+def umich_user_attributes(overrides = {})
+  random_number = rand(10**21).to_s
+  {
+    google_id: random_number,
+    name: "Example User",
+    email_address: "user@umich.edu",
+    avatar_url: "https://lh5.googleusercontent.com/-z90eNbVovkU/AAAAAAAAAAI/photo.jpg",
+    locale: "en",
+    hosted_domain: "umich.edu",
+    remember_digest: nil
+  }.merge(overrides)
+end
