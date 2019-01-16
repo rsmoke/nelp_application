@@ -43,6 +43,8 @@ group :development, :test do
 end
 
 group :test do
+  gem 'simplecov', require: false
+  gem 'simplecov-console', require: false
   gem 'capybara', '~> 3.12'
 end
 
