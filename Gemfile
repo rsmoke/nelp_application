@@ -46,6 +46,7 @@ group :test do
   gem 'simplecov', require: false
   gem 'simplecov-console', require: false
   gem 'capybara', '~> 3.12'
+  gem 'database_cleaner'
 end
 
 group :development do

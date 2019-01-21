@@ -26,7 +26,14 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   before do
     user = User.create!(umich_user_attributes)
+    session[:user_id] = user
   end
 
+  it "cannot access index" do
+
+    get :index
+
+    expect(response).to redirect_to(root_url)
+  end
 
 end
