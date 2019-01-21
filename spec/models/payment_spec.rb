@@ -22,6 +22,13 @@ RSpec.describe Payment, type: :model do
     expect(subject).to_not be_valid
   end
 
+  it "is not valid without a unique transactionId" do
+    user = User.create(user_attributes)
+    subject1 = Payment.create!(payment_attributes(user: user, transactionId: "1234567890"))
+    subject2 = Payment.new(payment_attributes(user: user, transactionId: "1234567890"))
+    expect(subject2).to_not be_valid
+  end
+
   it "is not valid without a transactionTotalAmount" do
     subject.transactionTotalAmount = nil
     expect(subject).to_not be_valid
@@ -65,6 +72,13 @@ RSpec.describe Payment, type: :model do
   it "is not valid without a transactionHash" do
     subject.transactionHash = nil
     expect(subject).to_not be_valid
+  end
+
+  it "is not valid without a unique transactionHash" do
+    user = User.create(user_attributes)
+    subject1 = Payment.create!(payment_attributes(user: user, transactionHash: "63d042588e873b698ff8c04"))
+    subject2 = Payment.new(payment_attributes(user: user, transactionHash: "63d042588e873b698ff8c04"))
+    expect(subject2).to_not be_valid
   end
 
   it "belongs to a user" do
