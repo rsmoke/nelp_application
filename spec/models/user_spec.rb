@@ -64,7 +64,18 @@ RSpec.describe User, type: :model do
       user.save
       expect( duplicate_user.valid? ).to be_falsey
     end
+  end
 
+  context 'valid token' do
+    it "generates a random token" do
+      expect(User.new_token).to be_truthy
+    end
+
+    it "remembers a user in the database for use in persistent sessions."
+
+    it "confirms authenticated user is valid"
+
+    it "deletion forgets a user"
   end
 
 end
