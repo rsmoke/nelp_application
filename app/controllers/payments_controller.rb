@@ -1,6 +1,7 @@
 require 'digest'
 require 'time'
 
+
 class PaymentsController < ApplicationController
   before_action :current_user,   only: %i[payment_receipt make_payment]
 
@@ -29,15 +30,15 @@ class PaymentsController < ApplicationController
   end
 
   def make_payment
-    processed_url = generate_hash(@current_user)
+    processed_url = generate_hash(@current_user, params['amount'])
     redirect_to processed_url
   end
 
   private
-    def generate_hash(current_user)
+    def generate_hash(current_user, amount=35)
       order_num = current_user.email_address.partition('@').first + '-' + current_user.id.to_s
       redirect_url = 'https://lsa-english-nelp.miserver.it.umich.edu/payment_receipt'
-      amount_to_be_payed = 35
+      amount_to_be_payed = amount.to_i
       if Rails.env.development? || current_user.id == 1
          key_to_use = 'test_key'
          url_to_use = 'test_URL'
@@ -75,6 +76,6 @@ class PaymentsController < ApplicationController
     end
 
     def url_params
-      params.permit(:transactionType, :transactionStatus, :transactionId, :transactionTotalAmount, :transactionDate, :transactionAcountType, :transactionResultCode, :transactionResultMessage, :orderNumber, :timestamp, :hash)
+      params.permit(:amount, :transactionType, :transactionStatus, :transactionId, :transactionTotalAmount, :transactionDate, :transactionAcountType, :transactionResultCode, :transactionResultMessage, :orderNumber, :timestamp, :hash)
     end
 end
