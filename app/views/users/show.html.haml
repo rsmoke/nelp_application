@@ -31,29 +31,37 @@
 %hr
 - if @users_current_payments.count == 0
   %p
-    = link_to "Make a payment", make_payment_path, class: 'btn btn-sm btn-success'
+    = link_to "Make a payment", make_payment_path, params: {amount: 35}, class: 'btn btn-sm btn-success'
+- elsif @users_current_payments.count == 1
+  %p
+    = button_to "Pay Deposit #1 ($250)", make_payment_path, params: {amount: 250}, class: 'btn btn-sm btn-success'
+- else
+  %p
+    = button_to "Pay Deposit #2", make_payment_path, params: {amount: 64}, class: 'btn btn-sm btn-success'
 
-.card
-  .card-header.text-center
-    Transactions
-  .card-body
-    %p
-      - if @users_current_payments.count == 0
-        %p
-          You have not made a payment yet.
-      - else
-        %ul.small
-          - @users_current_payments.each do |payment|
-            %li
-              %b
-                Transaction:
-              =payment.transactionId
-              %b
-                Credit Card:
-              =payment.transactionAcountType
-              %b
-                Amount:
-              ="$#{payment.transactionTotalAmount.chomp('00')}"
-              %b
-                Date:
-              =payment.transactionDate
+
+
+%h5 Transactions
+%h6
+  = "You have paid a total of #{pluralize(number_to_currency(@ttl_paid), 'dollar')} "
+.card-deck
+  - if @users_current_payments.count == 0
+    .card
+      .card-body
+        %h6.card-title  You have not made a payment yet.
+  - else
+    - @users_current_payments.each do |payment|
+      .card
+        .card-header
+          Transaction:
+          =payment.transactionId
+        %ul.list-group-item
+          %li.list-group-item
+            Credit Card:
+            =payment.transactionAcountType
+          %li.list-group-item
+            Amount:
+            ="$#{payment.transactionTotalAmount.chomp('00')}"
+          %li.list-group-item
+            Date:
+            =payment.transactionDate
