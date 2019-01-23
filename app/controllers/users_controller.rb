@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @users_current_payments = Payment.where(payerFullName: @user.google_id )
+    @users_current_payments = Payment.where(payerFullName: @user.google_id, transactionStatus: '1' )
     @ttl_paid = Payment.where(user_id: @user).pluck(:transactionTotalAmount).map(&:to_f).sum / 100
   end
 
