@@ -13,11 +13,10 @@
           Ann Arbor, MI 48109-1003
         .email
           %i.fa.fa-envelope
-          %a{:href => "mailto:aknuth@umich.edu"} aknuth@umich.edu
-        %div
-          %a{:href => "http://www.lsa.umich.edu/nelp"}
-            %span{:style => "color: rgb(255,203,5);"} LSA NELP Program
+          = mail_to 'aknuth@umich.edu'
 
+      .col-md-2.footer_brand_link.text-center
+        = link_to 'LSA NELP Program', "http://www.lsa.umich.edu/nelp"
 
       .footer-col-lf.col-md-4.text-right
         %label.sr-only{:for => "deptPhone"} Click to call 734.764.6330

@@ -29,39 +29,48 @@
 
 %hr
 %hr
-- if @users_current_payments.count == 0
+- if @users_current_payments.size < 1
   %p
-    = link_to "Make a payment", make_payment_path, params: {amount: 35}, class: 'btn btn-sm btn-success'
-- elsif @users_current_payments.count == 1
+    = button_to "Make a payment", make_payment_path, params: {amount: 35}, class: 'btn btn-sm btn-success'
+- elsif @users_current_payments.size == 1
   %p
     = button_to "Pay Deposit #1 ($250)", make_payment_path, params: {amount: 250}, class: 'btn btn-sm btn-success'
 - else
+  %h6 Please enter the amount you would like to pay
   %p
-    = button_to "Pay Deposit #2", make_payment_path, params: {amount: 64}, class: 'btn btn-sm btn-success'
-
-
-
-%h5 Transactions
+    =form_with url: make_payment_path, local: true do |f|
+      .form-row.align-items-center
+        .col-auto
+          .input-group.mb-2
+            .input-group-prepend
+              .input-group-text
+                $
+            = f.number_field :amount, value: "250", within: 1..250, required: true
+            = f.submit "Pay Deposit", class: 'btn btn-sm btn-success ml-2'
+%hr.w-50
+%h5 Your Transactions
 %h6
   = "You have paid a total of #{pluralize(number_to_currency(@ttl_paid), 'dollar')} "
-.card-deck
-  - if @users_current_payments.count == 0
-    .card
-      .card-body
-        %h6.card-title  You have not made a payment yet.
-  - else
-    - @users_current_payments.each do |payment|
+.row
+  .card-deck.ml-4
+    - if @users_current_payments.count < 1
       .card
-        .card-header
-          Transaction:
-          =payment.transactionId
-        %ul.list-group-item
-          %li.list-group-item
-            Credit Card:
-            =payment.transactionAcountType
-          %li.list-group-item
-            Amount:
-            ="$#{payment.transactionTotalAmount.chomp('00')}"
-          %li.list-group-item
-            Date:
-            =payment.transactionDate
+        .card-body
+          %h6.card-title  You have not made a payment yet.
+    - else
+      - @users_current_payments.each do |payment|
+        .card
+          .card-header
+            Transaction:
+            =payment.transactionId
+          .card-body
+            %ul.list-group-item
+              %li.list-group-item
+                Credit Card:
+                =payment.transactionAcountType
+              %li.list-group-item
+                Amount:
+                ="$#{payment.transactionTotalAmount.chomp('00')}"
+              %li.list-group-item
+                Date:
+                =payment.transactionDate
