@@ -1,30 +1,40 @@
 - provide(:title, 'Payment Receipt')
 
-%h1 Payment_receipt
+%h1 Your Payment Receipt
 
 %h4
+  = "#{@current_user.name},"
+
+%h5
   = @current_payment.transactionResultMessage
 
-%h6
-  = "#{@current_user.name},"
-%p
+%h5
   = "Your payment of the NELP Application fee (Confirmation Number: #{@current_payment.transactionId}) has been recorded into your account"
 %p.text-muted
   You will also receive an email confirmation from 'MerchantCreditCard&#64;umich.edu'
-%h5
-  Everyone who applies to NELP will also meet for 20 minutes with a pair of NELP
-  interviewers.  To sign up for your interview, you must come in person to Aric Knuth’s
-  office (located in 4172 Angell Hall) after you’ve submitted your NELP application online.
-  You can stop by anytime during the following three options:
-  %ul
-    %li Tuesday, January 15, 1-5pm
-    %li Wednesday, January 16, 9-5pm
-    %li Thursday, January 17, 1-5pm
+%hr.w-50
 
-  Please put this on your calendar now so you’ll remember to sign up for your
-  NELP interview.  If you’re not free during any of the times above, you should
-  email Aric Knuth at
-  = mail_to 'aknuth@umich.edu'
-  and await further instructions.
+.card.w-75
+  .card-body
+    %h5.card-title Interview Appointment Instructions
+    %p.card-text
+      Everyone who applies to NELP will also meet for 20 minutes with a pair of
+      NELP interviewers.  To sign up for your interview, you must come in person
+      to Aric Knuth’s office (located in 4172 Angell Hall) after you’ve
+      submitted your NELP application online. You can stop by anytime during the
+      following three options:
+  %ul.list-group.list-group-flush
+    %li.list-group-item Tuesday, January 15, 1-5pm
+    %li.list-group-item Wednesday, January 16, 9-5pm
+    %li.list-group-item Thursday, January 17, 1-5pm
+  .card-body
+    %p.card-text
+      Please put this on your calendar now so you’ll remember to sign up for your
+      NELP interview.  If you’re not free during any of the times above, you should
+      email Aric Knuth at
+      = mail_to 'aknuth@umich.edu'
+      and await further instructions.
 
-= link_to "Your Payment Profile", current_user
+.row.justify-content-center
+  .col-3.p-2
+    = link_to "Your Payment Profile", current_user, class: 'btn btn-info'
