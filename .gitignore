@@ -33,3 +33,6 @@ yarn-debug.log*
 
 # Ignore simplecov results
 coverage
+
+# Ignore better errors config
+config/initializers/better_errors.rb

@@ -18,6 +18,8 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'google_sign_in'
 
+
+gem "administrate"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
@@ -57,6 +59,8 @@ group :development do
   gem 'spring-watcher-listen'
   gem 'pry'
   gem 'pry-rails'
+  gem "better_errors"
+  gem "binding_of_caller"
   gem 'meta_request'
   gem 'capistrano',         require: false
   gem 'capistrano-rbenv',   require: false

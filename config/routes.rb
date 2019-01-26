@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :logins
+      resources :payments
+      resources :users
+
+      root to: "logins#index"
+    end
   resources :transactions
   # get 'nelnet_services/payment_receipt'
   root 'pages#index'
