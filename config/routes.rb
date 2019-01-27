@@ -4,7 +4,7 @@ Rails.application.routes.draw do
       resources :payments
       resources :users
 
-      root to: "logins#index"
+      root to: "users#index"
     end
   resources :transactions
   # get 'nelnet_services/payment_receipt'
