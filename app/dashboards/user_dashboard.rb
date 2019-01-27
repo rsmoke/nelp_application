@@ -32,9 +32,9 @@ class UserDashboard < Administrate::BaseDashboard
     :name,
     :email_address,
     :payments,
-    :logins,
-    :id,
-    :google_id,
+    # :logins,
+    # :id,
+    # :google_id,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -78,7 +78,7 @@ class UserDashboard < Administrate::BaseDashboard
   #   "User ##{user.id}"
   # end
   def display_resource(user)
-    ": #{user.name}"
+    " #{user.name}"
   end
 
 
