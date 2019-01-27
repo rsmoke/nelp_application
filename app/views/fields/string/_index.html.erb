@@ -15,7 +15,7 @@ By default, the attribute is rendered as a truncated string.
 [1]: http://www.rubydoc.info/gems/administrate/Administrate/Field/String
 %>
 
-<% if field.name === "transactionTotalAmount" %>
+<% if field.name === "total_amount" %>
   <%= "$#{field.data.to_f / 100 }0" %>
 <% else %>
   <%= field.truncate %>

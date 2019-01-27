@@ -11,18 +11,18 @@ class PaymentDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
     id: Field::Number,
-    transactionType: Field::String,
-    transactionStatus: Field::String,
-    transactionId: Field::String,
-    transactionTotalAmount: Field::String,
-    transactionDate: Field::String,
-    transactionAcountType: Field::String,
-    transactionResultCode: Field::String,
-    transactionResultMessage: Field::String,
-    orderNumber: Field::String,
-    payerFullName: Field::String,
+    transaction_type: Field::String,
+    transaction_status: Field::String,
+    transaction_id: Field::String,
+    total_amount: Field::String,
+    transaction_date: Field::String,
+    account_type: Field::String,
+    result_code: Field::String,
+    result_message: Field::String,
+    user_account: Field::String,
+    payer_identity: Field::String,
     timestamp: Field::String,
-    transactionHash: Field::String,
+    transaction_hash: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -34,11 +34,10 @@ class PaymentDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :user,
-    :orderNumber,
+    :user_account,
     :id,
-    # :transactionType,
-    :transactionTotalAmount,
-    :transactionStatus,
+    :total_amount,
+    :transaction_status,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -46,18 +45,18 @@ class PaymentDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = [
     :user,
     :id,
-    :transactionType,
-    :transactionStatus,
-    :transactionId,
-    :transactionTotalAmount,
-    :transactionDate,
-    :transactionAcountType,
-    :transactionResultCode,
-    :transactionResultMessage,
-    :orderNumber,
-    :payerFullName,
+    :transaction_type,
+    :transaction_status,
+    :transaction_id,
+    :total_amount,
+    :transaction_date,
+    :account_type,
+    :result_code,
+    :result_message,
+    :user_account,
+    :payer_identity,
     :timestamp,
-    :transactionHash,
+    :transaction_hash,
     :created_at,
     :updated_at,
   ].freeze
@@ -67,24 +66,24 @@ class PaymentDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :user,
-    :transactionType,
-    :transactionStatus,
-    :transactionId,
-    :transactionTotalAmount,
-    :transactionDate,
-    :transactionAcountType,
-    :transactionResultCode,
-    :transactionResultMessage,
-    :orderNumber,
-    :payerFullName,
+    :transaction_type,
+    :transaction_status,
+    :transaction_id,
+    :total_amount,
+    :transaction_date,
+    :account_type,
+    :result_code,
+    :result_message,
+    :user_account,
+    :payer_identity,
     :timestamp,
-    :transactionHash,
+    :transaction_hash,
   ].freeze
 
   # Overwrite this method to customize how payments are displayed
   # across all pages of the admin dashboard.
   #
   def display_resource(payment)
-    "Payment ##{payment.id} for $#{payment.transactionTotalAmount.chomp("00")}"
+    "Payment ##{payment.id} for $#{payment.total_amount.to_f / 100 }0"
   end
 end

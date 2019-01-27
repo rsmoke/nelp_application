@@ -6,10 +6,10 @@
   = "#{@current_user.name},"
 
 %h5
-  = @current_payment.transactionResultMessage
+  = @current_payment.result_message
 
 %h5
-  = "Your payment of the NELP Application fee (Confirmation Number: #{@current_payment.transactionId}) has been recorded into your account"
+  = "Your payment of the NELP Application fee (Confirmation Number: #{@current_payment.transaction_id}) has been recorded into your account"
 %p.text-muted
   You will also receive an email confirmation from 'MerchantCreditCard&#64;umich.edu'
 %hr.w-50

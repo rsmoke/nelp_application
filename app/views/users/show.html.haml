@@ -62,15 +62,15 @@
         .card
           .card-header
             Transaction:
-            =payment.transactionId
+            =payment.transaction_id
           .card-body
             %ul.list-group-item
               %li.list-group-item
                 Credit Card:
-                =payment.transactionAcountType
+                =payment.account_type
               %li.list-group-item
                 Amount:
-                ="$#{payment.transactionTotalAmount.chomp('00')}"
+                ="$#{payment.total_amount.to_f / 100 }0"
               %li.list-group-item
                 Date:
-                =payment.transactionDate
+                =payment.transaction_date

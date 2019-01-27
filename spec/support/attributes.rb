@@ -1,18 +1,18 @@
 def payment_attributes(overrides = {})
   random_number = rand(10**10).to_s
   {
-    transactionType: "1",
-    transactionStatus: "1",
-    transactionId: random_number,
-    transactionTotalAmount: "10000",
-    transactionDate: "201812061817",
-    transactionAcountType: "VISA",
-    transactionResultCode: "TAS717",
-    transactionResultMessage: "This transaction has been approved.",
-    orderNumber: "example-1",
-    payerFullName: "116482571300161375344",
+    transaction_type: "1",
+    transaction_status: "1",
+    transaction_id: random_number,
+    total_amount: "10000",
+    transaction_date: "201812061817",
+    account_type: "VISA",
+    result_code: "TAS717",
+    result_message: "This transaction has been approved.",
+    user_account: "example-1",
+    payer_identity: "116482571300161375344",
     timestamp: "1544138228060",
-    transactionHash: "63d042588e873b698ff8c04deeb68fa408a82d4fe26b1c5e91",
+    transaction_hash: "63d042588e873b698ff8c04deeb68fa408a82d4fe26b1c5e91",
   }.merge(overrides)
 end
 
