@@ -7,6 +7,7 @@ class PaymentDashboard < Administrate::BaseDashboard
   # Each different type represents an Administrate::Field object,
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
+
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
     id: Field::Number,
@@ -33,6 +34,7 @@ class PaymentDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :user,
+    :orderNumber,
     :id,
     # :transactionType,
     :transactionTotalAmount,
@@ -82,7 +84,7 @@ class PaymentDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how payments are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(payment)
-  #   "Payment ##{payment.id}"
-  # end
+  def display_resource(payment)
+    "Payment ##{payment.id} for $#{payment.transactionTotalAmount.chomp("00")}"
+  end
 end
