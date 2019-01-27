@@ -45,9 +45,6 @@ as well as a link to its edit page.
       <dd class="attribute-data attribute-data--<%=attribute.html_class%>"
           >
           <%= render_field attribute, page: page %>
-          <% if attribute.name === 'transactionTotalAmount' %>
-            (this value is in cents)
-          <% end %>
         </dd>
     <% end %>
   </dl>
