@@ -21,6 +21,9 @@
                 Your Account
                 -# %b.caret
               %ul.dropdown-menu
+                - if current_user_admin?
+                  %li.nav-item
+                    = link_to "Admin", admin_root_path, :class => 'nav-link nav-link-header'
                 %li.nav-item
                   = link_to "Transactions", current_user, :class => 'nav-link nav-link-header'
                 %li.divider{:role => "separator"}
