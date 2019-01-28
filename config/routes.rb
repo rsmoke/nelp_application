@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
       root to: "users#index"
     end
-  resources :transactions
+  # resources :transactions
   # get 'nelnet_services/payment_receipt'
   root 'pages#index'
 
