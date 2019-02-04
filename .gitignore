@@ -40,3 +40,4 @@ config/initializers/better_errors.rb
 # ignore rubymine bits
 .idea
 
+.vscode
