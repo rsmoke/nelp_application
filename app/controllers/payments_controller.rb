@@ -3,32 +3,46 @@ require 'time'
 
 
 class PaymentsController < ApplicationController
-  before_action :current_user,   only: %i[payment_receipt make_payment]
+  before_action :current_user,   only: %i[payment_receipt make_payment payment_show]
+
+  def index
+    redirect_to root_url
+  end
 
   def payment_receipt
-    Payment.create(
-      transaction_type: params['transactionType'],
-      transaction_status: params['transactionStatus'],
-      transaction_id: params['transactionId'],
-      total_amount: params['transactionTotalAmount'],
-      transaction_date: params['transactionDate'],
-      account_type: params['transactionAcountType'],
-      result_code: params['transactionResultCode'],
-      result_message: params['transactionResultMessage'],
-      user_account: params['orderNumber'],
-      payer_identity: @current_user.google_id,
-      timestamp: params['timestamp'],
-      transaction_hash: params['hash'],
-      user_id: current_user.id
-    )
+    if Payment.pluck(:transaction_id).include?(params['transactionId'])
+      redirect_to all_payments_path
+    else
+      Payment.create(
+        transaction_type: params['transactionType'],
+        transaction_status: params['transactionStatus'],
+        transaction_id: params['transactionId'],
+        total_amount: params['transactionTotalAmount'],
+        transaction_date: params['transactionDate'],
+        account_type: params['transactionAcountType'],
+        result_code: params['transactionResultCode'],
+        result_message: params['transactionResultMessage'],
+        user_account: params['orderNumber'],
+        payer_identity: @current_user.google_id,
+        timestamp: params['timestamp'],
+        transaction_hash: params['hash'],
+        user_id: current_user.id
+      )
 
-    @current_payment = Payment.find_by(transaction_id: params[:transactionId])
-
+      redirect_to all_payments_path, notice: "Your Payment Was Successfully Recorded"
+    end
   end
 
   def make_payment
     processed_url = generate_hash(@current_user, params['amount'])
     redirect_to processed_url
+  end
+
+  def payment_show
+    @total_cost = 535
+    @users_current_payments = Payment.where(user_id: current_user )
+    @ttl_paid = Payment.where(user_id: current_user, transaction_status: '1').pluck(:total_amount).map(&:to_f).sum / 100
+    @balance_due = @total_cost - @ttl_paid
   end
 
   private
