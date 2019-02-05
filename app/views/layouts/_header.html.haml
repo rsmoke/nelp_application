@@ -15,17 +15,12 @@
           %li.nav-item
             = link_to "Terms of Use", terms_of_service_path, :class => 'nav-link'
 
-          - if logged_in?
-            %li.nav-item.dropdown
-              %a.nav-link.dropdown-toggle{"data-toggle" => "dropdown", :href => "#"}
-                Your Account
-                -# %b.caret
-              %ul.dropdown-menu
-                - if current_user_admin?
-                  %li.nav-item
-                    = link_to "Admin", admin_root_path, :class => 'nav-link nav-link-header'
-                %li.nav-item
-                  = link_to "Transactions", current_user, :class => 'nav-link nav-link-header'
-                %li.divider{:role => "separator"}
-                %li.nav-item
-                  = link_to "Log out", logout_path, method: :delete, :class => 'nav-link nav-link-header'
+          - if logged_in?  
+            %li.nav-item
+              = link_to "Transactions", all_payments_path, :class => 'nav-link text-warning'
+      - if logged_in?
+        %p.navbar-text.pull-right
+          = link_to "Log out", logout_path, method: :delete, :class => 'navbar-link'
+          - if current_user_admin?
+            |
+            = link_to "Admin", admin_root_path, :class => 'navbar-link'
