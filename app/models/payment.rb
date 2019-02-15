@@ -11,7 +11,7 @@ class Payment < ApplicationRecord
   validates :transaction_hash, presence: true, uniqueness: true
 
   def self.to_csv
-    attributes = %w{id user_name user_email amount_paid est_created_at}
+    attributes = %w{id transaction_id user_name user_email amount_paid result_message est_created_at}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
