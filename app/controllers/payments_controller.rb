@@ -6,7 +6,13 @@ class PaymentsController < ApplicationController
   before_action :current_user,   only: %i[payment_receipt make_payment payment_show]
 
   def index
-    redirect_to root_url
+    redirect_to root_url and return unless current_user_admin?
+    @payments = Payment.all
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @payments.to_csv, filename: "users-#{Date.today}.csv" }
+    end
   end
 
   def payment_receipt
