@@ -73,7 +73,7 @@ class PaymentsController < ApplicationController
       current_epoch_time = DateTime.now.strftime("%Q").to_i
       initial_hash = {
         'orderNumber' => user_account,
-        'orderType' => 'English Department Online',
+        'orderType' => Rails.application.credentials.NELNET_SERVICE[:ORDERTYPE],
         'orderDescription' => 'NELP Application Fees',
         'amountDue' => amount_to_be_payed * 100,
         'redirectUrl' => redirect_url,
