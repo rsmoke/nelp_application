@@ -41,3 +41,10 @@ config/initializers/better_errors.rb
 .idea
 
 .vscode
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
