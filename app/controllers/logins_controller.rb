@@ -9,7 +9,11 @@ class LoginsController < ApplicationController
       @user = User.find_by(google_id: GoogleSignIn::Identity.new(flash[:google_sign_in_token]).user_id)
       if @user
         log_in @user
-        redirect_to all_payments_path
+        if current_user_admin?
+          redirect_to admin_root_path
+        else
+          redirect_to all_payments_path
+        end
       else
         redirect_to root_url, alert: 'There was problem finding your account'
       end
