@@ -8,6 +8,8 @@ as defined by the routes in the `admin/` namespace
 %>
 
 <nav class="navigation" role="navigation">
+  <div id="admin_title" style="background-color: darkblue; color: yellow;text-align: center; border-radius: 4px; ">NELP Payments Administration</div>
+  <hr>
   <% Administrate::Namespace.new(namespace).resources.each do |resource| %>
     <%= link_to(
       display_resource_name(resource),
