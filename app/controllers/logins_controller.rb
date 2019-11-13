@@ -10,7 +10,7 @@ class LoginsController < ApplicationController
       if @user
         log_in @user
         if current_user_admin?
-          redirect_to admin_root_path
+          redirect_to admin_payments_path
         else
           redirect_to all_payments_path
         end
