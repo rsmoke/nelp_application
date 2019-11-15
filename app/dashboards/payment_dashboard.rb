@@ -37,7 +37,7 @@ class PaymentDashboard < Administrate::BaseDashboard
     :user_account,
     :id,
     :total_amount,
-    :transaction_status,
+    :transaction_status
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

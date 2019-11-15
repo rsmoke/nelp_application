@@ -38,4 +38,6 @@ class Payment < ApplicationRecord
     (created_at + Time.zone_offset('EST')).strftime("%F %T")
   end
 
+  scope :for_current_registration_period, ->(date=DateTime.parse('201910010000')) { where(transaction_date: date.strftime("%Y%m%d%H%M")..(date + 11.months).strftime("%Y%m%d%H%M")) }
+
 end

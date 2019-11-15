@@ -7,7 +7,7 @@ class PaymentsController < ApplicationController
 
   def index
     redirect_to root_url and return unless current_user_admin?
-    @payments = Payment.all
+    @payments = Payment.for_current_registration_period
 
     respond_to do |format|
       format.html
@@ -46,8 +46,8 @@ class PaymentsController < ApplicationController
 
   def payment_show
     @total_cost = 535
-    @users_current_payments = Payment.where(user_id: current_user )
-    @ttl_paid = Payment.where(user_id: current_user, transaction_status: '1').pluck(:total_amount).map(&:to_f).sum / 100
+    @users_current_payments = Payment.for_current_registration_period.where(user_id: current_user )
+    @ttl_paid = Payment.for_current_registration_period.where(user_id: current_user, transaction_status: '1').pluck(:total_amount).map(&:to_f).sum / 100
     @balance_due = @total_cost - @ttl_paid
   end
 
