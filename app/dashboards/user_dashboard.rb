@@ -8,7 +8,7 @@ class UserDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    payments: Field::HasMany,
+    # payments: Field::HasMany,
     logins: Field::HasMany,
     id: Field::Number,
     google_id: Field::String,
@@ -31,7 +31,7 @@ class UserDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :name,
     :email_address,
-    :payments,
+    # :payments,
     # :logins,
     # :id,
     # :google_id,
@@ -40,7 +40,7 @@ class UserDashboard < Administrate::BaseDashboard
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :payments,
+    # :payments,
     :logins,
     :id,
     :google_id,
@@ -59,7 +59,7 @@ class UserDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
-    :payments,
+    # :payments,
     :logins,
     :google_id,
     :name,
