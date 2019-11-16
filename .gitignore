@@ -48,3 +48,6 @@ config/initializers/better_errors.rb
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+NelpProject.sublime-workspace
+NelpProject.sublime-project
