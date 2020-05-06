@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.2'
+ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.2'
+gem 'rails', '~> 5.2.4'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -27,7 +27,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'haml-rails'
 gem 'csv'
-gem 'webpacker', '~> 4.0', '>= 4.0.7'
+gem 'webpacker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

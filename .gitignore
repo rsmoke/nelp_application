@@ -51,3 +51,5 @@ yarn-debug.log*
 
 NelpProject.sublime-workspace
 NelpProject.sublime-project
+
+*.OLD
