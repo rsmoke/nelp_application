@@ -1,5 +1,5 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.11.0"
+lock "~> 3.14.0"
 
 server 'lsa-english-nelp.miserver.it.umich.edu', roles: [:web, :app, :db], primary: true
 
