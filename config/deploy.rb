@@ -92,7 +92,37 @@ namespace :deploy do
   after  :finishing,    :cleanup
   after  :finishing,    :restart
 end
+namespace :maintenance do
+  desc "Maintenance start (edit config/maintenance_template.yml to provide parameters)"
+  task :start do
+    on roles(:web) do
+      upload! "config/maintenance_template.yml", "#{current_path}/tmp/maintenance.yml"
+    end
+  end
 
+  desc "Maintenance stop"
+  task :stop do
+    on roles(:web) do
+      execute "rm #{current_path}/tmp/maintenance.yml"
+    end
+  end
+end
+
+namespace :maintenance do
+  desc "Maintenance start (edit config/maintenance_template.yml to provide parameters)"
+  task :start do
+    on roles(:web) do
+      upload! "config/maintenance_template.yml", "#{current_path}/tmp/maintenance.yml"
+    end
+  end
+
+  desc "Maintenance stop"
+  task :stop do
+    on roles(:web) do
+      execute "rm #{current_path}/tmp/maintenance.yml"
+    end
+  end
+end
 # ps aux | grep puma    # Get puma pid
 # kill -s SIGUSR2 pid   # Restart puma
 # kill -s SIGTERM pid   # Stop puma
