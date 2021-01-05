@@ -30,5 +30,7 @@ module NelpApplication
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.logger = Logger.new(STDOUT)
   end
 end
