@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  include LoginsHelper
 
 private
   def user_has_payments?(user)

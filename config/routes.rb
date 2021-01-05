@@ -1,19 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :admins
+  # devise_for :admin_users, ActiveAdmin::Devise.config
+  # ActiveAdmin.routes(self)
+  devise_for :admins, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   devise_for :users
-  namespace :admin do
-      resources :logins
-      resources :payments
-      resources :users
+  # namespace :admin do
+  #     resources :logins
+  #     resources :payments
+  #     resources :users
 
-      root to: "users#index"
-    end
+  #     root to: "users#index"
+  #   end
   # resources :transactions
   # get 'nelnet_services/payment_receipt'
   root 'pages#index'
 
-  get '/login', to: 'logins#create', as: :create_login
-  delete '/logout', to: 'logins#destroy'
+  # get '/login', to: 'logins#create', as: :create_login
+  # delete '/logout', to: 'logins#destroy'
 
   get '/about', to: 'pages#about'
   get '/contact', to: 'pages#contact'
@@ -26,5 +29,5 @@ Rails.application.routes.draw do
   get 'make_payment', to: 'payments#make_payment'
   post 'make_payment', to: 'payments#make_payment'
 
-  resources :users
+  # resources :users
 end

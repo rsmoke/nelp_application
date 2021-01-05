@@ -15,12 +15,13 @@
           %li.nav-item
             = link_to "Terms of Use", terms_of_service_path, :class => 'nav-link'
 
-          - if logged_in?  
+          - if user_signed_in?  
             %li.nav-item
               = link_to "Transactions", all_payments_path, :class => 'nav-link text-warning'
-      - if logged_in?
+      - if user_signed_in?
         %p.navbar-text.pull-right
-          = link_to "Log out", logout_path, method: :delete, :class => 'navbar-link'
-          - if current_user_admin?
+          = current_user.email
+          = link_to "Log out", destroy_user_session_path, method: :delete, :class => 'navbar-link'
+          - if current_admin
             |
             = link_to "Admin", admin_root_path, :class => 'navbar-link'

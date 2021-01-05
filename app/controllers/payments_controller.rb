@@ -6,7 +6,7 @@ class PaymentsController < ApplicationController
   before_action :current_user,   only: %i[payment_receipt make_payment payment_show]
 
   def index
-    redirect_to root_url and return unless current_user_admin?
+    redirect_to root_url and return unless current_admin
     @payments = Payment.for_current_registration_period
 
     respond_to do |format|
@@ -29,7 +29,7 @@ class PaymentsController < ApplicationController
         result_code: params['transactionResultCode'],
         result_message: params['transactionResultMessage'],
         user_account: params['orderNumber'],
-        payer_identity: @current_user.google_id,
+        payer_identity: current_user.email,
         timestamp: params['timestamp'],
         transaction_hash: params['hash'],
         user_id: current_user.id
@@ -53,7 +53,7 @@ class PaymentsController < ApplicationController
 
   private
     def generate_hash(current_user, amount=35)
-      user_account = current_user.email_address.partition('@').first + '-' + current_user.id.to_s
+      user_account = current_user.email.partition('@').first + '-' + current_user.id.to_s
       redirect_url = 'https://lsa-english-nelp.miserver.it.umich.edu/payment_receipt'
       amount_to_be_payed = amount.to_i
       if Rails.env.development? || current_user.id == 1

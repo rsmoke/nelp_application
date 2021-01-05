@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise'
 # gem 'google_sign_in'
 
-gem "administrate"
+gem 'activeadmin'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 

@@ -2,6 +2,7 @@
   "name": "nelp_application",
   "private": true,
   "dependencies": {
+    "@activeadmin/activeadmin": "^2.9.0",
     "@fortawesome/fontawesome-free": "^5.5.0",
     "@rails/webpacker": "^4.0.7",
     "bootstrap": "^4.0.0",
