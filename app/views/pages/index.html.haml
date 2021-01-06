@@ -2,7 +2,7 @@
 
 %h1 NELP Program Payments
 %h4 Welcome to the payment portal for the New England Literature Program (NELP) at the University of Michigan.
-- if user_signed_in?
-  = link_to "transactions", all_payments_path
-- else     
-  = link_to "login", new_user_session_path
+-# - if user_signed_in?
+-#   = link_to "Your Transactions", all_payments_path
+-# - else     
+= link_to "Log in", new_user_session_path, class: "btn btn-xs btn-success"
